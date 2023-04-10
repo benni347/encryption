@@ -22,7 +22,7 @@ func GenerateECCKeyPair(curve elliptic.Curve) (*ecdsa.PrivateKey, *ecdsa.PublicK
 	return privateKey, publicKey, nil
 }
 
-func calculateHash(message []byte) []byte {
+func CalculateHash(message []byte) []byte {
 	hash, err := blake2b.New256(nil)
 	if err != nil {
 		fmt.Printf("Error creating hash: %v\n", err)
@@ -32,7 +32,7 @@ func calculateHash(message []byte) []byte {
 	return hash.Sum(nil)
 }
 
-func signEcc(privateKey *ecdsa.PrivateKey, messageHash []byte) ([]byte, error) {
+func SignEcc(privateKey *ecdsa.PrivateKey, messageHash []byte) ([]byte, error) {
 	r, s, err := ecdsa.Sign(rand.Reader, privateKey, messageHash)
 	if err != nil {
 		return nil, err
@@ -51,7 +51,7 @@ func signEcc(privateKey *ecdsa.PrivateKey, messageHash []byte) ([]byte, error) {
 	return signature, nil
 }
 
-func verifyEcc(publicKey *ecdsa.PublicKey, messageHash []byte, signature []byte) bool {
+func VerifyEcc(publicKey *ecdsa.PublicKey, messageHash []byte, signature []byte) bool {
 	curveBits := publicKey.Curve.Params().BitSize
 	keyBytes := (curveBits + 7) / 8
 
@@ -64,7 +64,7 @@ func verifyEcc(publicKey *ecdsa.PublicKey, messageHash []byte, signature []byte)
 // From here to the lines which is a comment which contains --- the functions used are under the BSD3-Clause license.
 // https://pkg.go.dev/github.com/cloudflare/circl/sign/dilithium
 
-func generateDilithiumKeyPair(modeName string) (dilithium.PublicKey, dilithium.PrivateKey, error) {
+func GenerateDilithiumKeyPair(modeName string) (dilithium.PublicKey, dilithium.PrivateKey, error) {
 	mode := dilithium.ModeByName(modeName)
 	if mode == nil {
 		return nil, nil, fmt.Errorf("mode not supported")
@@ -78,14 +78,14 @@ func generateDilithiumKeyPair(modeName string) (dilithium.PublicKey, dilithium.P
 	return publicKey, privateKey, nil
 }
 
-func packDilithiumKeys(
+func PackDilithiumKeys(
 	publicKey dilithium.PublicKey,
 	privateKey dilithium.PrivateKey,
 ) ([]byte, []byte) {
 	return publicKey.Bytes(), privateKey.Bytes()
 }
 
-func unpackDilithiumKeys(
+func UnpackDilithiumKeys(
 	modeName string,
 	packedPublicKey []byte,
 	packedPrivateKey []byte,
@@ -95,7 +95,7 @@ func unpackDilithiumKeys(
 	return mode.PublicKeyFromBytes(packedPublicKey), mode.PrivateKeyFromBytes(packedPrivateKey)
 }
 
-func signDilithium(
+func SignDilithium(
 	privateKey dilithium.PrivateKey,
 	msg []byte,
 	modeName string,
@@ -110,7 +110,7 @@ func signDilithium(
 	return mode.Sign(privateKey, msg), signatureSize, nil
 }
 
-func verifyDilithium(
+func VerifyDilithium(
 	publicKey dilithium.PublicKey,
 	msg []byte,
 	signature []byte,
@@ -126,11 +126,11 @@ func verifyDilithium(
 
 // ---
 
-func printError(message string, err error) {
+func PrintError(message string, err error) {
 	fmt.Printf("\033[1m%s\033[0m: %s\n", "ERROR: %s: %v\n", message, err)
 }
 
-func printInfo(message string, verbose bool) {
+func PrintInfo(message string, verbose bool) {
 	if verbose {
 		fmt.Printf("\033[1m%s\033[0m: %s\n", "INFO", message)
 	}
