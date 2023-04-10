@@ -25,7 +25,7 @@ func GenerateECCKeyPair(curve elliptic.Curve) (*ecdsa.PrivateKey, *ecdsa.PublicK
 func CalculateHash(message []byte) []byte {
 	hash, err := blake2b.New256(nil)
 	if err != nil {
-		fmt.Printf("Error creating hash: %v\n", err)
+		PrintError("creating hash", err)
 		return nil
 	}
 	hash.Write(message)
