@@ -127,7 +127,7 @@ func VerifyDilithium(
 // ---
 
 func PrintError(message string, err error) {
-	fmt.Printf("\033[1m%s\033[0m: %s\n", "ERROR: %s: %v\n", message, err)
+	fmt.Printf("\033[1mERROR:\033[0m %s: %v\n", message, err)
 }
 
 func PrintInfo(message string, verbose bool) {
