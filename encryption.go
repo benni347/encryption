@@ -51,7 +51,7 @@ func SignEcc(privateKey *ecdsa.PrivateKey, messageHash []byte) ([]byte, error) {
 	return signature, nil
 }
 
-func VerifyEcc(publicKey *ecdsa.PublicKey, messageHash []byte, signature []byte) bool {
+func VerifyEcc(publicKey *ecdsa.PublicKey, messageHash, signature []byte) bool {
 	curveBits := publicKey.Curve.Params().BitSize
 	keyBytes := (curveBits + 7) / 8
 
