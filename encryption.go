@@ -8,6 +8,7 @@ import (
 	"math/big"
 
 	"github.com/cloudflare/circl/sign/dilithium"
+	kyberk2so "github.com/symbolicsoft/kyber-k2so"
 	"golang.org/x/crypto/blake2b"
 )
 
@@ -134,6 +135,16 @@ func PrintInfo(message string, verbose bool) {
 	if verbose {
 		fmt.Printf("\033[1m%s\033[0m: %s\n", "INFO", message)
 	}
+}
+
+func GenerateKyberKeyPair() ([kyberk2so.Kyber1024SKBytes]byte, [kyberk2so.Kyber1024PKBytes]byte, error) {
+	privateKey, publicKey, err := kyberk2so.KemKeypair1024()
+	if err != nil {
+		PrintError("During the Creation of the Kyber KeyPair", err)
+		return privateKey, publicKey, err
+	}
+
+	return privateKey, publicKey, nil
 }
 
 /*
