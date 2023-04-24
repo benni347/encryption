@@ -151,6 +151,13 @@ func EncryptKyber(publlicKey [kyberk2so.Kyber1024PKBytes]byte) ([kyberk2so.Kyber
 	return kyberk2so.KemEncrypt1024(publlicKey)
 }
 
+func DecryptKyber(
+	ciphertext [kyberk2so.Kyber1024CTBytes]byte,
+	privateKey [kyberk2so.Kyber1024SKBytes]byte,
+) ([kyberk2so.KyberSSBytes]byte, error) {
+	return kyberk2so.KemDecrypt1024(ciphertext, privateKey)
+}
+
 /*
 func main() {
 	var args struct {
