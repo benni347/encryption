@@ -1,7 +1,10 @@
 package encryption
 
-import "testing"
-import kyberk2so "github.com/symbolicsoft/kyber-k2so"
+import (
+	"testing"
+
+	kyberk2so "github.com/symbolicsoft/kyber-k2so"
+)
 
 func TestGenerateKyberKeyPair(t *testing.T) {
 	privateKey, publicKey, err := GenerateKyberKeyPair()
