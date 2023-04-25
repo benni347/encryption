@@ -138,9 +138,9 @@ func GenerateKyberKeyPair() ([kyberk2so.Kyber1024SKBytes]byte, [kyberk2so.Kyber1
 }
 
 func EncryptKyber(
-	publlicKey [kyberk2so.Kyber1024PKBytes]byte,
+	publicKey [kyberk2so.Kyber1024PKBytes]byte,
 ) ([kyberk2so.Kyber1024CTBytes]byte, [kyberk2so.KyberSSBytes]byte, error) {
-	return kyberk2so.KemEncrypt1024(publlicKey)
+	return kyberk2so.KemEncrypt1024(publicKey)
 }
 
 func DecryptKyber(
