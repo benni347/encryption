@@ -24,7 +24,7 @@ func GenerateECCKeyPair(curve elliptic.Curve) (*ecdsa.PrivateKey, *ecdsa.PublicK
 }
 
 func CalculateHash(message []byte) []byte {
-	hash, err := blake2b.New256(nil)
+	hash, err := blake2b.New512(nil)
 	if err != nil {
 		fmt.Printf("Error creating hash: %v\n", err)
 		return nil
@@ -147,7 +147,9 @@ func GenerateKyberKeyPair() ([kyberk2so.Kyber1024SKBytes]byte, [kyberk2so.Kyber1
 	return privateKey, publicKey, nil
 }
 
-func EncryptKyber(publlicKey [kyberk2so.Kyber1024PKBytes]byte) ([kyberk2so.Kyber1024CTBytes]byte, [kyberk2so.KyberSSBytes]byte, error) {
+func EncryptKyber(
+	publlicKey [kyberk2so.Kyber1024PKBytes]byte,
+) ([kyberk2so.Kyber1024CTBytes]byte, [kyberk2so.KyberSSBytes]byte, error) {
 	return kyberk2so.KemEncrypt1024(publlicKey)
 }
 
