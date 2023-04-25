@@ -23,16 +23,6 @@ func GenerateECCKeyPair(curve elliptic.Curve) (*ecdsa.PrivateKey, *ecdsa.PublicK
 	return privateKey, publicKey, nil
 }
 
-func CalculateHash(message []byte) []byte {
-	hash, err := blake2b.New512(nil)
-	if err != nil {
-		fmt.Printf("Error creating hash: %v\n", err)
-		return nil
-	}
-	hash.Write(message)
-	return hash.Sum(nil)
-}
-
 func SignEcc(privateKey *ecdsa.PrivateKey, messageHash []byte) ([]byte, error) {
 	r, s, err := ecdsa.Sign(rand.Reader, privateKey, messageHash)
 	if err != nil {
@@ -158,6 +148,16 @@ func DecryptKyber(
 	privateKey [kyberk2so.Kyber1024SKBytes]byte,
 ) ([kyberk2so.KyberSSBytes]byte, error) {
 	return kyberk2so.KemDecrypt1024(ciphertext, privateKey)
+}
+
+func CalculateHash(message []byte) []byte {
+	hash, err := blake2b.New512(nil)
+	if err != nil {
+		fmt.Printf("Error creating hash: %v\n", err)
+		return nil
+	}
+	hash.Write(message)
+	return hash.Sum(nil)
 }
 
 /*
