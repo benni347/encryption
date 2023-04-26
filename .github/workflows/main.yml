@@ -1,0 +1,34 @@
+name: Create Release on PR Merge
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Git user
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "cdrc+github-actions@skwar.me"
+
+      - name: Create tag
+        run: |
+          VERSION=$(echo "v$(date +%Y%m%d%H%M%S)")
+          git tag $VERSION
+          git push origin $VERSION
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.VERSION }}
+          release_name: Release ${{ env.VERSION }}
+          body: Auto-generated release
