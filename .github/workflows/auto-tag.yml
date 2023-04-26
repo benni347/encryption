@@ -16,6 +16,16 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install semver
+
     - name: Get the latest tag
       id: get_latest_tag
       run: |
@@ -25,14 +35,21 @@ jobs:
 
     - name: Increment the version and create a new tag
       id: increment_version
-      uses: juliangruber/increment-version@v1
-      with:
-        version: ${{ steps.get_latest_tag.outputs.latest_tag }}
-        type: patch
+      run: |
+        import os
+        import semver
+
+        latest_tag = os.environ["LATEST_TAG"]
+        new_version = semver.bump_patch(latest_tag)
+        print(f"New version: {new_version}")
+        echo "::set-output name=new_version::$new_version"
+      env:
+        LATEST_TAG: ${{ steps.get_latest_tag.outputs.latest_tag }}
+      shell: python
 
     - name: Push the new tag
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git tag ${{ steps.increment_version.outputs.newVersion }}
-        git push origin ${{ steps.increment_version.outputs.newVersion }}
+        git tag ${{ steps.increment_version.outputs.new_version }}
+        git push origin ${{ steps.increment_version.outputs.new_version }}
