@@ -25,3 +25,16 @@ func TestGenerateEccKeyPair(t *testing.T) {
 		t.Errorf("Public key has incorrect length: got %d, want %d", len(publicKeyBytes), 65)
 	}
 }
+
+func TestSignECC(t *testing.T) {
+	privateKey, _, _ := GenerateECCKeyPair()
+	message := []byte("Hello, world!")
+	hash := CalculateHash(message)
+	signature, err := SignEcc(privateKey, hash)
+	if err != nil {
+		t.Errorf("Error signing with ECC: %v", err)
+	}
+	if len(signature) != 64 {
+		t.Errorf("Signature has incorrect length: got %d, want %d", len(signature), 64)
+	}
+}
