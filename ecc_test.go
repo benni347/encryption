@@ -38,3 +38,14 @@ func TestSignECC(t *testing.T) {
 		t.Errorf("Signature has incorrect length: got %d, want %d", len(signature), 64)
 	}
 }
+
+func TestVerifyEcc(t *testing.T) {
+	privateKey, publicKey, _ := GenerateECCKeyPair()
+	message := []byte("Hello, world!")
+	hash := CalculateHash(message)
+	signature, _ := SignEcc(privateKey, hash)
+	verified := VerifyEcc(publicKey, hash, signature)
+	if verified != true {
+		t.Errorf("Error verifying ECC signature: %v", verified)
+	}
+}
