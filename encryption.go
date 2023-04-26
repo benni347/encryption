@@ -12,7 +12,9 @@ import (
 	"golang.org/x/crypto/blake2b"
 )
 
-func GenerateECCKeyPair(curve elliptic.Curve) (*ecdsa.PrivateKey, *ecdsa.PublicKey, error) {
+func GenerateECCKeyPair() (*ecdsa.PrivateKey, *ecdsa.PublicKey, error) {
+	curve := elliptic.P256()
+
 	privateKey, err := ecdsa.GenerateKey(curve, rand.Reader)
 	if err != nil {
 		return nil, nil, err
