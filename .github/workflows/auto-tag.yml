@@ -7,6 +7,8 @@ on:
 
 jobs:
   tag:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -16,3 +18,4 @@ jobs:
       - uses: phish108/autotag-action@1.1.53
         with:
           github-token: ${{ secrets.GITHUB_TOKEN}}
+          with-v: "true"
