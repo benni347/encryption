@@ -39,7 +39,7 @@ func TestPrintInfo(t *testing.T) {
 	want := fmt.Sprintf("\033[1m%s\033[0m: %s\n", "INFO", "Test message")
 
 	output := captureStdout(func() {
-		PrintInfo("Test message", true)
+		PrintInfo("Test message")
 	})
 
 	if output != want {
