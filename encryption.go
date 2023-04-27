@@ -123,10 +123,8 @@ func PrintError(message string, err error) {
 	fmt.Printf("\033[1mERROR:\033[0m %s: %v\n", message, err)
 }
 
-func PrintInfo(message string, verbose bool) {
-	if verbose {
-		fmt.Printf("\033[1m%s\033[0m: %s\n", "INFO", message)
-	}
+func PrintInfo(message string) {
+	fmt.Printf("\033[1m%s\033[0m: %s\n", "INFO", message)
 }
 
 func GenerateKyberKeyPair() ([kyberk2so.Kyber1024SKBytes]byte, [kyberk2so.Kyber1024PKBytes]byte, error) {
