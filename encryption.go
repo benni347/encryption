@@ -146,7 +146,7 @@ func DecryptKyber(
 func CalculateHash(message []byte) []byte {
 	hash, err := blake2b.New512(nil)
 	if err != nil {
-		fmt.Printf("Error creating hash: %v\n", err)
+		utils.PrintError("During the Creation of the Hash", err)
 		return nil
 	}
 	hash.Write(message)
