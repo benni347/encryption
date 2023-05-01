@@ -141,11 +141,11 @@ The rest of the code in this repository is licensed under the MIT License.
 
 Contributions to this repository are welcome. If you have any suggestions, bug reports, or feature requests, please open an issue on GitHub.
 
-# Acknowledgments
+## Acknowledgments
 
 This repository was created as part of a culminating academic endeavor.
 
-## Contributors
+### Contributors
 
 <a href="https://github.com/benni347/encryption/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=benni347/encryption" />
