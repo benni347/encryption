@@ -1,3 +1,5 @@
+github.com/benni347/messengerutils v0.0.3 h1:t4GROh/Q8hQsGfI39ba0m5HxhLkzkIe427s3YUcxVRk=
+github.com/benni347/messengerutils v0.0.3/go.mod h1:+j6fJ2dq2EDH1vdHheL2HBhbfJ5P9WeJMlIn1xmE9aw=
 github.com/cloudflare/circl v1.3.2 h1:VWp8dY3yH69fdM7lM6A1+NhhVoDu9vqK0jOgmkQHFWk=
 github.com/cloudflare/circl v1.3.2/go.mod h1:+CauBF6R70Jqcyl8N2hC8pAXYbWkGIezuSbuGLtRhnw=
 github.com/symbolicsoft/kyber-k2so v0.2.0 h1:JHb3OzwV9xjSH/Sib4jd2swZzp2GNot8gUpdydqQBfs=
