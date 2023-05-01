@@ -103,13 +103,13 @@ hash := encryption.CalculateHash(message)
 
 #### Functions
 
-##### Elliptic Curve Cryptography (ECC)
+##### Elliptic Curve Cryptography (ECC) Functions
 
 - `GenerateECCKeyPair() (*ecdsa.PrivateKey, *ecdsa.PublicKey, error)`: generates a private and public key pair for ECC.
 - `SignEcc(privateKey *ecdsa.PrivateKey, messageHash []byte) ([]byte, error)`: signs a message hash using a private key.
 - `VerifyEcc(publicKey *ecdsa.PublicKey, messageHash, signature []byte) bool`: verifies a message hash's signature using a public key.
 
-##### Dilithium
+##### Dilithium Functions
 
 - `GenerateDilithiumKeyPair(modeName string) (dilithium.PublicKey, dilithium.PrivateKey, error)`: generates a private and public key pair for Dilithium, using a specified mode.
 - `PackDilithiumKeys(publicKey dilithium.PublicKey, privateKey dilithium.PrivateKey) ([]byte, []byte)`: packs the public and private key into byte slices.
@@ -117,13 +117,13 @@ hash := encryption.CalculateHash(message)
 - `SignDilithium(privateKey dilithium.PrivateKey, msg []byte, modeName string) ([]byte, int, error)`: signs a message using a private key and mode, returning the signature and its size.
 - `VerifyDilithium(publicKey dilithium.PublicKey, msg []byte, signature []byte, modeName string) (bool, error)`: verifies a message's signature using a public key and mode.
 
-##### Kyber
+##### Kyber Functions
 
 - `GenerateKyberKeyPair() ([kyberk2so.Kyber1024SKBytes]byte, [kyberk2so.Kyber1024PKBytes]byte, error)`: generates a private and public key pair for Kyber.
 - `EncryptKyber(publicKey *[kyberk2so.Kyber1024PKBytes]byte) ([kyberk2so.Kyber1024CTBytes]byte, [kyberk2so.KyberSSBytes]byte, error)`: encrypts a message using a public key.
 - `DecryptKyber(ciphertext *[kyberk2so.Kyber1024CTBytes]byte, privateKey *[kyberk2so.Kyber1024SKBytes]byte) ([kyberk2so.KyberSSBytes]byte, error)`: decrypts a ciphertext using a private key.
 
-##### Blake2b
+##### Blake2b Functions
 
 - `CalculateHash(message []byte) []byte`: calculates the hash of a given message using Blake2b.
 
