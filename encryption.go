@@ -123,7 +123,7 @@ func VerifyDilithium(
 func GenerateKyberKeyPair() ([kyberk2so.Kyber1024SKBytes]byte, [kyberk2so.Kyber1024PKBytes]byte, error) {
 	privateKey, publicKey, err := kyberk2so.KemKeypair1024()
 	if err != nil {
-		PrintError("During the Creation of the Kyber KeyPair", err)
+		utils.PrintError("During the Creation of the Kyber KeyPair", err)
 		return privateKey, publicKey, err
 	}
 
